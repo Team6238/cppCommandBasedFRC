@@ -1,33 +1,35 @@
-#define _GLIBCXX_USE_CXX11_ABI 0
-#include "ExampleCommand.h"
+#include "Intake.h"
+#include "../Robot.h"
 
-ExampleCommand::ExampleCommand() : frc::Command("ExampleCommand"){
+Intake::Intake() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
+	Requires(Robot::gearPickup.get());
 }
 
 // Called just before this Command runs the first time
-void ExampleCommand::Initialize() {
-
+void Intake::Initialize() {
+	Robot::gearPickup->SetSolenoid(0);
 }
 
 // Called repeatedly when this Command is scheduled to run
-void ExampleCommand::Execute() {
-
+void Intake::Execute() {
+	Robot::gearPickup->SetTalon(0.5);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool ExampleCommand::IsFinished() {
-	return false;
+bool Intake::IsFinished() {
+	return Robot::gearPickup->CheckLimitSwitch();
 }
 
 // Called once after isFinished returns true
-void ExampleCommand::End() {
-
+void Intake::End() {
+	Robot::gearPickup->SetTalon(0);
+	Robot::gearPickup->SetSolenoid(1);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void ExampleCommand::Interrupted() {
+void Intake::Interrupted() {
 
 }

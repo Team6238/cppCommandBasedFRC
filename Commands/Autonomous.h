@@ -2,9 +2,10 @@
 #ifndef Autonomous_H
 #define Autonomous_H
 
-#include <Commands/Command.h>
+#include <Commands/CommandGroup.h>
+#include "wpilib.h"
 
-class Autonomous : public frc::Command {
+class Autonomous : public CommandGroup {
 public:
 	Autonomous();
 };

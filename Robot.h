@@ -10,11 +10,14 @@
 
 #include <Commands/Autonomous.h>
 #include <OI.h>
-#include <Subsystems/ExampleSubsystem.h>
+#include <Subsystems/DriveTrain.h>
+#include <Subsystems/GearPickup.h>
 
 class Robot: public frc::IterativeRobot{
 public:
-	static std::shared_ptr<ExampleSubsystem>exampleSubsystem;
+	static std::unique_ptr<OI>oi;
+	static std::shared_ptr<DriveTrain>driveTrain;
+	static std::shared_ptr<GearPickup>gearPickup;
 
 private:
 	Autonomous* autonomousCommand;

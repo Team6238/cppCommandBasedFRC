@@ -2,8 +2,9 @@
 #include <Robot.h>
 #include <iostream>
 
-std::shared_ptr<ExampleSubsystem> Robot::exampleSubsystem = std::make_shared<ExampleSubsystem>();
-
+std::unique_ptr<OI> Robot::oi = std::make_unique<OI>();
+std::shared_ptr<DriveTrain> Robot::driveTrain = std::make_shared<DriveTrain>();
+std::shared_ptr<GearPickup> Robot::gearPickup = std::make_shared<GearPickup>();
 
 void Robot::RobotInit(){
 
